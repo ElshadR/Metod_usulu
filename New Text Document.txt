@@ -1,0 +1,243 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ders5
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<string> name = new List<string>();
+            List<string> surname = new List<string>();
+            List<string> university = new List<string>();
+            List<string> faculty = new List<string>();
+            List<string> specialty = new List<string>();
+            List<string> user_password = new List<string>();
+          /*  void user_create()
+            {
+                Console.Write("USERNAME: ");
+                var user1
+            }*/
+
+            void instructions()
+            {
+                Console.WriteLine("----------------------------------------------------");
+                Console.WriteLine("   Emrler siyahisi");
+                Console.WriteLine("   _______________");
+                Console.WriteLine("1. data elave et");
+                Console.WriteLine("2.melumatlari goster");
+                Console.WriteLine("3.melumatlari yenile");
+                Console.WriteLine("4.melumati sil");
+                Console.WriteLine("----------------------------------------------------");
+                Console.Write("icra etmek istediyiniz emri sec: ");
+                var emrNomresi = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("----------------------------------------------------");
+
+                switch (emrNomresi)
+                {
+                    case 1:
+                        Create();
+                        break;
+                    case 2:
+                        Read();
+                        break;
+                    case 3:
+                        Update();
+                        break;
+
+                    case 4:
+                        Delete();
+                        break;
+
+
+                    default:
+                        Console.WriteLine("Uzr isteyirik bele bir emr yoxdur,sizi ana ekrana yonlendiririk");
+                        instructions();
+                        break;
+                }
+            }
+
+            void Create()
+            {
+                
+                    Console.WriteLine("1:Adinizi daxil etmek.");
+                    Console.WriteLine("2:Soyadinizi daxil etmek.");
+                    Console.WriteLine("3:Universitetinizin adini daxil etmek.");
+                    Console.WriteLine("4:Fakultenizin daxil etmek.");
+                    Console.WriteLine("5:Ixtisasinizin daxil etme.");
+                    Console.WriteLine("----------------------------------------------------");
+                    Console.Write("icra etmek istediyiniz emri sec: ");
+                    var emrNomresi2 = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("----------------------------------------------------");
+                    switch (emrNomresi2)
+                    {
+                        case 1:
+                            Name();
+                            break;
+                        case 2:
+                            Surname();
+                            break;
+                        case 3:
+                            University();
+                            break;
+                        case 4:
+                            Faculty();
+                            break;
+                        case 5:
+                            Specialty();
+                            break;
+                        default:
+                            Console.WriteLine("Bele bir emeliyyat yoxdur");
+                            Create();
+                            break;
+
+                    }
+                
+               
+
+            }
+            void dovr()
+            {
+                Console.WriteLine("----------------------------------------------------");
+                Console.WriteLine("Daxil eliyeceyiniz basqa melumat varsa\"n\"-nu,yoxdusa\"y\"-ni daxil edib enteri basin");
+                var herif = Console.ReadLine();
+                Console.WriteLine("----------------------------------------------------");
+                if (herif == "n")
+                {
+                    Create();
+                }
+                else if (herif == "y")
+                {
+                   /* for (int i = 0; i < name.Count; i++)
+                    {
+                        if (surname[i] == "")
+                        {
+                            surname[i] = " ";
+                            Read();
+                        }
+                        else
+                        {
+                            Read();
+                        }
+                    }*/
+                    instructions();
+
+                }
+            }
+
+            void Name()
+            {
+              
+                    Console.Write(" Adinizi daxil edin: ");
+                    var ad = Console.ReadLine();
+                    name.Add(ad);
+                    dovr();
+            }
+            void Surname()
+            {
+               
+                    Console.Write(" Soyadinizi daxil edin: ");
+                    var soyad = Console.ReadLine();
+                    surname.Add(soyad);
+                    dovr();
+                
+            }
+            void University()
+            {
+               
+                    Console.WriteLine(" Universitetinizin adini yazin");
+                    var universitet = Console.ReadLine();
+                    university.Add(universitet);
+                    dovr();
+                
+            }
+            void Faculty()
+            {
+
+                    Console.WriteLine(" Fakultenizi  yazin");
+                    var fakulte = Console.ReadLine();
+                    faculty.Add(fakulte);
+                    dovr();
+ 
+            }
+            void Specialty()
+            {
+
+                    Console.WriteLine(" Ixtisasinizi yazin");
+                    var ixtisas = Console.ReadLine();
+                    specialty.Add(ixtisas);
+                    dovr();
+                
+            }
+            void Read()
+            {
+                var a = 0;
+                var b = 0;
+               
+                
+                for(int j=0;j<name.Count;j++)
+                {
+                    if (surname.Count == name.Count)
+                    {
+                        Console.WriteLine((j + 1) + " - " + name[a] + "-" + surname[a]);
+                        a++;
+                    }
+                    else
+                    {
+                        Surname();
+                    }
+                    
+
+
+                }
+
+               
+                
+                instructions();
+
+            }
+            void sifir()
+            {
+
+                for (int i = name.Count; i > surname.Count; i--)
+                {
+                    surname[i - 1] = Console.ReadLine();
+                    surname.Add(surname[i - 1]);
+                    //i--;
+                    Read();
+                }
+
+                //Console.WriteLine("dsdkvdjvbdfv");
+
+            }
+           
+
+
+
+            void Update()
+            {
+                Console.WriteLine("deyismek istediyiniz adin nomresini yazin: ");
+                var update = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("yeni adi yazin: ");
+                var newName = Console.ReadLine();
+                name[update] = newName;
+                instructions();
+            }
+
+            void Delete()
+            {
+                
+                
+                Console.WriteLine("silmek istediyiniz adin nomresini daxil edin");
+                var delete = Convert.ToInt32(Console.ReadLine());
+                name.Remove(name[delete]);
+                instructions();
+
+            }
+            instructions();
+        }
+    }
+}
